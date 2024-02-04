@@ -11,15 +11,11 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+
+    - name: Add & Commit
+      uses: EndBug/add-and-commit@v7
       with:
-        fetch-depth: 0  # This is required to fetch all history for all branches and tags
-
-    - name: Set up Git
-      run: |
-        git config --global user.name 'Nitin Yadav'
-        git config --global user.email 'nitinya9av@gmail.com'
-
-    - name: Commit and push if changed
-      run: |
-        git add -A
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Automated commit at $(date -u -d '+5 hours 30 minutes' +'%A %d-%m-%Y %H:%M:%S %Z')"; git push)
+        author_name: 'Nitin Yadav'
+        author_email: 'nitinya9av@gmail.com'
+        message: "$(date +'%A %d-%m-%Y %H:%M:%S %Z')"
+        add: '.'
