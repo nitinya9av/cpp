@@ -8,7 +8,7 @@ class student
     private:
     int roll;
     char name;
-    float marks;
+    int marks;
     public:
     void getdata()
     {
