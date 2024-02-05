@@ -1,9 +1,8 @@
-name: Auto Commit and Push
+name: Auto Commit
 
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: '*/5 * * * *'  # This will run every 5 minutes
 
 jobs:
   build:
@@ -13,13 +12,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Install Git
-      run: sudo apt-get update && sudo apt-get install -y git
-
-    - name: Commit and Push
-      run: |
-        git config --global user.email "nitinya9av@gmail.com"
-        git config --global user.name "Nitin Yadav"
-        git add .
-        git commit -m "$(date +'%A %d-%m-%Y %H:%M:%S %Z')"
-        git push
+    - name: Add & Commit
+      uses: EndBug/add-and-commit@v7
+      with:
+        author_name: 'Nitin Yadav'
+        author_email: 'nitinya9av@gmail.com'
+        message: "$(date +'%A %d-%m-%Y %H:%M:%S %Z')"
+        add: '.'
