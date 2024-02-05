@@ -13,6 +13,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Install Git
+      run: sudo apt-get update && sudo apt-get install -y git
+
     - name: Commit and Push
       run: |
         git config --global user.email "nitinya9av@gmail.com"
